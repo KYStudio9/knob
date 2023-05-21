@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Knob</title>
+</head>
+<body>
+  <div id="knob-container">
+    <div id="knob-pointer-path">
+      <div id="knob-pointer"></div>
+    </div>
+    <div id="knob-base">
+      <div id="knob"></div>
+    </div>
+  </div>
+  <p id="value-box">0</p>
+  <script>
+    const knob_pointer = document.getElementById('knob-pointer');
+    const knob_base = document.getElementById('knob-base');
+    const knob = document.getElementById('knob');
+    const value_box = document.getElementById('value-box');
+
+    const min = 0;
+    const max = 100;
+    let value = 0;
+    const full_action_angle = 270;
+    const start_angle = -135;
+
+    knob.addEventListener('click', (e) => {
+      knob.classList.toggle('on');
+      knob_base.classList.toggle('on');
+      knob_pointer.classList.toggle('on');
+      value_box.classList.toggle('on');
+    });
+
+    knob.addEventListener('wheel', (e) => {
+      if(!knob.classList.contains('on')) return;
+      if(e.deltaY > 0) {
+        value++;
+        value = value > max ? max : value;
+      } else {
+        value--;
+        value = value < min ? min : value;
+      }
+      const new_pos = full_action_angle / (max - min) * (value - min) + start_angle;
+      knob_pointer.style.transform = `rotateZ(${new_pos}deg)`;
+      value_box.textContent = value;
+    });
+  </script>
+</body>
+</html>
