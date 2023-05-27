@@ -38,7 +38,7 @@ body {
   height: 100%;
   background: linear-gradient(to right bottom, #121212, #151515);
   border-radius: 50%;
-  clip-path: path('M58.58 341.42, A200 200 0 1 1 341.42 341.42, L335.76 335.76, A192 192 0 1 0 64.24 335.76 Z');
+  clip-path: path('M58.58,341.42 A200 200 0 1 1 341.42,341.42 L335.76,335.76 A192,192 0 1 0 64.24,335.76 Z');
 }
 
 #knob-pointer {
